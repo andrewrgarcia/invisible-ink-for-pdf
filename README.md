@@ -2,6 +2,12 @@
 
 Invisible Ink for PDF is a Python project which adds a witchy layer of security to your PDF documents. Add invisible watermarks to your PDFs that are only seen when selecting the document area.
 
+
+
+https://github.com/andrewrgarcia/invisible-ink-for-pdf/assets/10375211/c814f8c5-82b1-4352-887e-5d45b5d49a8a
+
+
+
 ## Installation
 
 To install the project, follow these steps:
