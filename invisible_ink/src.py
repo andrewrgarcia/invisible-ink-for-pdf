@@ -51,6 +51,13 @@ class InvisiblePen:
         packet.seek(0)
         return packet
 
+    def _slap_in_all_pages(self, input_pdf, output_pdf, watermark_packet):
+        doc_pages, watermark_page = self._read_pages(input_pdf, watermark_packet)
+        assert len(watermark_page) == 1
+        for page_num in range(len(doc_pages)):
+            self._slap_watermark_in_page(watermark_page, page_num, doc_pages)
+        doc_pages.save(output_pdf)
+
     def _read_pages(self, document, watermark):
         doc_pages = fitz.open(document)
         watermark_page = fitz.open("pdf", watermark.read())
@@ -59,13 +66,3 @@ class InvisiblePen:
     def _slap_watermark_in_page(self, watermark_page, num, doc_pages):
         page = doc_pages.load_page(num)
         page.show_pdf_page(page.rect, watermark_page, 0)
-
-    def _slap_in_all_pages(self, input_pdf, output_pdf, watermark_packet):
-        doc_pages, watermark_page = self._read_pages(input_pdf, watermark_packet)
-        assert len(watermark_page) == 1
-        for page_num in range(len(doc_pages)):
-            self._slap_watermark_in_page(watermark_page, page_num, doc_pages)
-        doc_pages.save(output_pdf)
-
-
-
